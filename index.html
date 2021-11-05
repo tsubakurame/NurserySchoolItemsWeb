@@ -4,23 +4,7 @@
     <meta charset="UTF-8">
     <title>Hello World</title>
     <!-- Add some CSS to change client UI -->
-    <style>
-    body {
-        background-color: #232F3E;
-        }
-    label, button {
-        color: #FF9900;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 20px;
-        margin-left: 40px;
-        }
-     input {
-        color: #232F3E;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 20px;
-        margin-left: 20px;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="nsi_web.css">
     <script type="text/javascript" src="misc.js"></script>
 </head>
 <body>
@@ -101,7 +85,8 @@
             </tr>
         </table>
         <!-- set button onClick method to call function we defined passing input values as parameters -->
-        <button type="button" onclick="OnClick()">Call API</button>
+        <div class="btdiv">
+        <button type="button" onclick="OnClick()">Call API</button></div>
     </form>
 </body>
 </html>
