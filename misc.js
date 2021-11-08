@@ -1,4 +1,12 @@
-var callAPI = (Dates,Diapers,PlasticBag,Clothes,Towel,Bib,Underwear,Gauze)=>{
+var DiapersStd;
+var PlasticBagStd;
+var ClothesStd;
+var TowelStd;
+var BibStd;
+var UnderwearStd;
+var GauzeStd;
+
+var Post_Put = (Dates,Diapers,PlasticBag,Clothes,Towel,Bib,Underwear,Gauze)=>{
     // instantiate a headers object
     var myHeaders = new Headers();
     // add content type header to object
@@ -30,7 +38,24 @@ var callAPI = (Dates,Diapers,PlasticBag,Clothes,Towel,Bib,Underwear,Gauze)=>{
     .then(result => alert(JSON.parse(result).body))
     .catch(error => console.log('error', error));
 }
-var OnClick = ()=>{
+var Post_Get = (Dates)=>{
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    var raw = JSON.stringify({"OperationType":"QUERY",
+                                "Keys":{
+                                    "Date":Dates
+                                }});
+    var requestOptions = {
+        method : 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+    var ret;
+    // console.log(JSON.stringify(requestOptions, null, 2));
+    return fetch("https://x93z0077i6.execute-api.us-west-2.amazonaws.com/dev/dynamodbctrl", requestOptions)
+}
+var Register_OnClick = ()=>{
     const Diapers_sel       = document.form1.Diapers;
     const PlasticBag_sel    = document.form1.PlasticBag;
     const Clothes_sel       = document.form1.Clothes;
@@ -47,7 +72,7 @@ var OnClick = ()=>{
     const Underwear     = Underwear_sel.options[Underwear_sel.selectedIndex].value;
     const Gauze         = Gauze_sel.options[Gauze_sel.selectedIndex].value;
 
-    callAPI(
+    Post_Put(
             GetDate(),
             Diapers,
             PlasticBag,
@@ -68,4 +93,70 @@ function formatDate(dt){
     var m   = ('00'+(dt.getMonth()+1)).slice(-2);
     var d   = ('00'+dt.getDate()).slice(-2);
     return y+'/'+m+'/'+d;
+}
+var GetStandard = ()=>{
+    const ret = Post_Get('Standard');
+    // console.log(ret);
+    // const json = await ret.json();
+    ret.then(function (response) {
+        return response.json();
+    })
+    .then(function (json){
+        var jsonObject  = JSON.parse(JSON.stringify(json));
+        // console.log(jsonObject.Items[0].Diapers);
+        DiapersStd      = document.form1.DiapersStd.value     = jsonObject.Items[0].Diapers;
+        PlasticBagStd   = document.form1.PlasticBagStd.value  = jsonObject.Items[0].PlasticBag;
+        ClothesStd      = document.form1.ClothesStd.value     = jsonObject.Items[0].Clothes;
+        TowelStd        = document.form1.TowelStd.value       = jsonObject.Items[0].Towel;
+        BibStd          = document.form1.BibStd.value         = jsonObject.Items[0].Bib;
+        UnderwearStd    = document.form1.UnderwearStd.value   = jsonObject.Items[0].Underwear;
+        GauzeStd        = document.form1.GauzeStd.value       = jsonObject.Items[0].Gauze;
+    });
+}
+var SetStandard = ()=>{
+    DiapersStd       = document.form1.DiapersStd.value;
+    PlasticBagStd    = document.form1.PlasticBagStd.value;
+    ClothesStd       = document.form1.ClothesStd.value;
+    TowelStd         = document.form1.TowelStd.value;
+    BibStd           = document.form1.BibStd.value;
+    UnderwearStd     = document.form1.UnderwearStd.value;
+    GauzeStd         = document.form1.GauzeStd.value;
+    Post_Put(
+        'Standard',
+        DiapersStd,
+        PlasticBagStd,
+        ClothesStd,
+        TowelStd,
+        BibStd,
+        UnderwearStd,
+        GauzeStd
+    )
+}
+var GetItems = ()=>{
+    var dt = new Date();
+    QueryItems(dt);
+}
+function QueryItems(date){
+    const ret = Post_Get(formatDate(date));
+    bool = ret.then(function (response) {
+        return response.json();
+    })
+    .then(function (json){    
+        var jsonObject  = JSON.parse(JSON.stringify(json));   
+        console.log(jsonObject); 
+        if (jsonObject.Count != 0){
+            // console.log(jsonObject.Items[0].Diapers);        
+            document.getElementById("DiapersNum").innerHTML     = DiapersStd - jsonObject.Items[0].Diapers;
+            document.getElementById("PlasticBagNum").innerHTML  = PlasticBagStd - jsonObject.Items[0].PlasticBag;
+            document.getElementById("ClothesNum").innerHTML     = ClothesStd - jsonObject.Items[0].Clothes;
+            document.getElementById("TowelNum").innerHTML       = TowelStd - jsonObject.Items[0].Towel;
+            document.getElementById("BibNum").innerHTML         = BibStd - jsonObject.Items[0].Bib;
+            document.getElementById("UnderwearNum").innerHTML   = UnderwearStd - jsonObject.Items[0].Underwear;
+            document.getElementById("GauzeNum").innerHTML       = GauzeStd - jsonObject.Items[0].Gauze;
+        }
+        else{
+            date.setDate(date.getDate()-1);
+            QueryItems(date);
+        }
+    });
 }

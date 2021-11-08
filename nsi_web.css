@@ -19,10 +19,12 @@ button{
     text-align: center;
 }
 input {
-    color: #232F3E;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
-    margin-left: 20px;
+    /* color: #232F3E; */
+    /* font-family: Arial, Helvetica, sans-serif; */
+    font-size: 50px;
+    width: 50%;
+    text-align: center;
+    /* margin-left: 20px; */
     }
 select{
     font-size: 50px;
@@ -32,3 +34,50 @@ select{
 table{
     width:100%
 } 
+th{
+    width: 50%;
+}
+.tabs{
+    margin-top: 50px;
+    padding-bottom: 40px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 700px;
+    margin: 0 auto;
+}
+.tab_item{
+    width: calc(100%/3);
+    height: 50px;
+    border-bottom: 3px solid #5ab4bd;
+    background-color: #d9d9d9;
+    line-height: 50px;
+    font-size: 16px;
+    text-align: center;
+    color: #565656;
+    display: block;
+    float: left;
+    text-align: center;
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+.tab_item:hover{
+    opacity: 0.75;
+}
+input[name="tab_item"]{
+    display: none;
+}
+.tab_content{
+    display: none;
+    padding: 40px 40px 0;
+    clear: both;
+    overflow: hidden;
+}
+#register:checked ~ #register_content,
+#inquiry:checked ~ #inquiry_content,
+#standard:checked ~ #standard_content {
+  display: block;
+}
+.tabs input:checked + .tab_item {
+    background-color: #5ab4bd;
+    color: #fff;
+}

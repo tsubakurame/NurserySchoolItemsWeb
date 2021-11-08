@@ -2,91 +2,178 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Hello World</title>
+    <title>保育園 持ち物管理</title>
     <!-- Add some CSS to change client UI -->
     <link rel="stylesheet" type="text/css" href="nsi_web.css">
     <script type="text/javascript" src="misc.js"></script>
 </head>
 <body>
     <form name="form1">
-        <table>
-            <tr>
-                <th><label>日付</label></th>
-                <th><Label id="Dates"><script>GetDate()</script></Label></th>
-            </tr>
-            <tr>
-                <th><label>おむつ</label></th>
-                <th><select name="Diapers">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                </select></th>
-            </tr>
-            <tr>
-                <th><label>ビニール袋</label></th>
-                <th><select name="PlasticBag">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                </select>        </th>
-            </tr>
-            <tr>
-                <th><label>服</label></th>
-                <th><select name="Clothes">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select></th>
-            </tr>
-            <tr>
-                <th><label>タオル</label></th>
-                <th><select name="Towel">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select></th>
-            </tr>
-            <tr>
-                <th><label>スタイ</label></th>
-                <th><select name="Bib">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select></th>
-            </tr>
-            <tr>
-                <th><label>下着</label></th>
-                <th><select name="Underwear">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select></th>        
-            </tr>
-            <tr>
-                <th><label>ガーゼ</label></th>
-                <th><select name="Gauze">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select></th>
-            </tr>
-        </table>
-        <!-- set button onClick method to call function we defined passing input values as parameters -->
-        <div class="btdiv">
-        <button type="button" onclick="OnClick()">Call API</button></div>
+        <div class="tabs">
+            <input id="register" type="radio" name="tab_item" checked>
+            <label class="tab_item" for="register">登録</label>
+            <input id="inquiry" type="radio" name="tab_item">
+            <label class="tab_item" for="inquiry">照会</label>
+            <input id="standard" type="radio" name="tab_item">
+            <label class="tab_item" for="standard">基準</label>
+            <div class="tab_content" id="register_content">
+                <div class="tab_content_description">
+                    <table>
+                        <tr>
+                            <th><label>日付</label></th>
+                            <th><Label id="Dates"><script>GetDate()</script></Label></th>
+                        </tr>
+                        <tr>
+                            <th><label>おむつ</label></th>
+                            <th><select name="Diapers">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                            </select></th>
+                        </tr>
+                        <tr>
+                            <th><label>ビニール袋</label></th>
+                            <th><select name="PlasticBag">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                            </select>        </th>
+                        </tr>
+                        <tr>
+                            <th><label>服</label></th>
+                            <th><select name="Clothes">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select></th>
+                        </tr>
+                        <tr>
+                            <th><label>タオル</label></th>
+                            <th><select name="Towel">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select></th>
+                        </tr>
+                        <tr>
+                            <th><label>スタイ</label></th>
+                            <th><select name="Bib">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select></th>
+                        </tr>
+                        <tr>
+                            <th><label>下着</label></th>
+                            <th><select name="Underwear">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select></th>        
+                        </tr>
+                        <tr>
+                            <th><label>ガーゼ</label></th>
+                            <th><select name="Gauze">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select></th>
+                        </tr>
+                    </table>
+                    <!-- set button onClick method to call function we defined passing input values as parameters -->
+                    <div class="btdiv">
+                    <button type="button" onclick="Register_OnClick()">登録</button></div>
+                </div>
+            </div>
+            <div class="tab_content" id="inquiry_content">
+                <div class="tab_content_description">
+                    <div class="btdiv">
+                    <button type="button" onclick="GetItems()">参照</button></div>
+                    <table>
+                        <tr>
+                            <th><label>おむつ</label></th>
+                            <th><label id="DiapersNum"></th>
+                        </tr>
+                        <tr>
+                            <th><label>ビニール袋</label></th>
+                            <th><label id="PlasticBagNum"></th>
+                        </tr>
+                        <tr>
+                            <th><label>服</label></th>
+                            <th><label id="ClothesNum"></th>
+                        </tr>
+                        <tr>
+                            <th><label>タオル</label></th>
+                            <th><label id="TowelNum"></th>
+                        </tr>
+                        <tr>
+                            <th><label>スタイ</label></th>
+                            <th><label id="BibNum"></th>
+                        </tr>
+                        <tr>
+                            <th><label>下着</label></th>
+                            <th><label id="UnderwearNum"></th>
+                        </tr>
+                        <tr>
+                            <th><label>ガーゼ</label></th>
+                            <th><label id="GauzeNum"></th>
+                        </tr>
+                    </table>                    
+                </div>
+            </div>
+            <div class="tab_content" id="standard_content">
+                <div class="tab_content_description">
+                    <table>
+                        <tr>
+                            <th><label>おむつ</label></th>
+                            <th><input type="number" name="DiapersStd"></th>
+                        </tr>
+                        <tr>
+                            <th><label>ビニール袋</label></th>
+                            <th><input type="number" name="PlasticBagStd"></th>
+                        </tr>
+                        <tr>
+                            <th><label>服</label></th>
+                            <th><input type="number" name="ClothesStd"></th>
+                        </tr>
+                        <tr>
+                            <th><label>タオル</label></th>
+                            <th><input type="number" name="TowelStd"></th>
+                        </tr>
+                        <tr>
+                            <th><label>スタイ</label></th>
+                            <th><input type="number" name="BibStd"></th>
+                        </tr>
+                        <tr>
+                            <th><label>下着</label></th>
+                            <th><input type="number" name="UnderwearStd"></th>
+                        </tr>
+                        <tr>
+                            <th><label>ガーゼ</label></th>
+                            <th><input type="number" name="GauzeStd"></th>
+                        </tr>
+                    </table>
+                    <div class="btdiv">
+                    <button type="button" onclick="SetStandard()">登録</button></div>
+                </div>
+            </div>
+        </div>
+
+
+        <script>GetStandard()</script>
     </form>
 </body>
 </html>
