@@ -57,6 +57,15 @@
                             </select></th>
                         </tr>
                         <tr>
+                            <th><label>ズボン</label></th>
+                            <th><select name="Pants">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select></th>
+                        </tr>
+                        <tr>
                             <th><label>タオル</label></th>
                             <th><select name="Towel">
                                 <option value="0">0</option>
@@ -92,6 +101,28 @@
                                 <option value="3">3</option>
                             </select></th>
                         </tr>
+                        <tr>
+                            <th><label>靴下</label></th>
+                            <th><select name="Socks">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select></th>
+                        </tr>
+                        <tr>
+                            <th><label>帽子</label></th>
+                            <th><select name="Hat">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select></th>
+                        </tr>
+                        <tr>
+                            <th><label>備考</label></th>
+                            <th><input type="test" name="Remarks"></th>
+                        </tr>
                     </table>
                     <!-- set button onClick method to call function we defined passing input values as parameters -->
                     <div class="btdiv">
@@ -116,6 +147,10 @@
                             <th><label id="ClothesNum"></th>
                         </tr>
                         <tr>
+                            <th><label>ズボン</label></th>
+                            <th><label id="PantsNum"></th>
+                        </tr>
+                        <tr>
                             <th><label>タオル</label></th>
                             <th><label id="TowelNum"></th>
                         </tr>
@@ -130,6 +165,18 @@
                         <tr>
                             <th><label>ガーゼ</label></th>
                             <th><label id="GauzeNum"></th>
+                        </tr>
+                        <tr>
+                            <th><label>靴下</label></th>
+                            <th><label id="SocksNum"></th>
+                        </tr>
+                        <tr>
+                            <th><label>帽子</label></th>
+                            <th><label id="HatNum"></th>
+                        </tr>
+                        <tr>
+                            <th><label>備考</label></th>
+                            <th><label id="RemarksNum"></th>
                         </tr>
                     </table>                    
                 </div>
@@ -150,6 +197,10 @@
                             <th><input type="number" name="ClothesStd"></th>
                         </tr>
                         <tr>
+                            <th><label>ズボン</label></th>
+                            <th><input type="number" name="PantsStd"></th>
+                        </tr>
+                        <tr>
                             <th><label>タオル</label></th>
                             <th><input type="number" name="TowelStd"></th>
                         </tr>
@@ -164,6 +215,14 @@
                         <tr>
                             <th><label>ガーゼ</label></th>
                             <th><input type="number" name="GauzeStd"></th>
+                        </tr>
+                        <tr>
+                            <th><label>靴下</label></th>
+                            <th><input type="number" name="SocksStd"></th>
+                        </tr>
+                        <tr>
+                            <th><label>帽子</label></th>
+                            <th><input type="number" name="HatStd"></th>
                         </tr>
                     </table>
                     <div class="btdiv">
